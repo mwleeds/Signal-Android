@@ -791,6 +791,11 @@ public class RecipientDatabase extends Database {
     return database.update(TABLE_NAME, contentValues, ID + " = ?", new String[] { id.serialize() });
   }
 
+  public void deleteRecipient(@NonNull RecipientId id) {
+    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    database.delete(TABLE_NAME, ID + " = ?", new String[] {id.serialize()});
+  }
+
   private @NonNull Optional<RecipientId> getByColumn(@NonNull String column, String value) {
     SQLiteDatabase db    = databaseHelper.getWritableDatabase();
     String         query = column + " = ?";
